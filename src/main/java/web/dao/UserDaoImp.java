@@ -1,30 +1,29 @@
 package web.dao;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao{
-
-    private final EntityManagerFactory entityManagerFactory;
-
-    public UserDaoImp(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
-    }
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public void add(User user) {
-        entityManagerFactory.createEntityManager().persist(user);
+        entityManager.persist(user);
     }
 
     @Override
     public void delete(User user) {
-        entityManagerFactory.createEntityManager().remove(user);
+        entityManager.remove(user);
     }
 
     @Override
@@ -34,6 +33,6 @@ public class UserDaoImp implements UserDao{
 
     @Override
     public List<User> allUsers() {
-        return entityManagerFactory.createEntityManager().createQuery("from User",User.class).getResultList();
+        return entityManager.createQuery("from User",User.class).getResultList();
     }
 }

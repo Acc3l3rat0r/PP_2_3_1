@@ -13,6 +13,11 @@
             <th>Last Name</th>
             <th>Email</th>
         </tr>
+        <tr th:each="user : ${allUsers}">
+            <td th:utext="${user.getFirstName()}">...</td>
+            <td th:utext="${user.getLastName()}">...</td>
+            <td th:utext="${user.getEmail()}">...</td>
+        </tr>
     </table>
 
 </div>

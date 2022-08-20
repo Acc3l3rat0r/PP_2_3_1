@@ -34,7 +34,7 @@ public class PersistenceConfig {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(getDataSource());
-        em.setPackagesToScan("src/main/java/web/model");
+        em.setPackagesToScan("web.model");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
